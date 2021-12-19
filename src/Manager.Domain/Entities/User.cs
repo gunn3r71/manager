@@ -54,7 +54,7 @@ namespace Manager.Domain.Entities
             
             validation.Errors.ForEach(x => _errors.Add(x.ErrorMessage));
 
-            throw new DomainException($"Some fields are invalid, please fix it, {Errors.First()}"); 
+            throw new DomainException($"Some fields are invalid, please fix it", _errors); 
         }
     }
 }
