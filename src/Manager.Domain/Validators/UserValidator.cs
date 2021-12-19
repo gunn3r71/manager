@@ -28,7 +28,9 @@ namespace Manager.Domain.Validators
                 .NotNull()
                 .WithMessage("The {PropertyName} cannot be null.")
                 .Matches(EmailRegex)
-                .WithMessage("The {PropertyName} is invalid.");
+                .WithMessage("The {PropertyName} is invalid.")
+                .Length(10, 100)
+                .WithMessage("The {PropertyName} must be between {MinLength} and {MaxLength} characters, you entered {TotalLength}.");
 
             RuleFor(x => x.Password)
                 .NotEmpty()
