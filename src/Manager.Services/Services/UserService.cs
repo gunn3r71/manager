@@ -21,7 +21,7 @@ namespace Manager.Services.Services
             _mapper = mapper;
         }
 
-        public async Task<UserDto> Create(CreateUserDto userDto)
+        public async Task<UserDto> Create(UserDto userDto)
         {
             var exists = await Exists(x => x.Email == userDto.Email);
 
@@ -32,7 +32,7 @@ namespace Manager.Services.Services
             return _mapper.Map<UserDto>(createdUser);
         }
 
-        public async Task<UserDto> Update(UpdateUserDTO userDto)
+        public async Task<UserDto> Update(UserDto userDto)
         {
             var exists = await Exists(x => x.Id == userDto.UserId);
 

@@ -7,8 +7,8 @@ namespace Manager.Services.Interfaces
 {
     public interface IUserService
     {
-        Task<UserDto> Create(CreateUserDto userDto);
-        Task<UserDto> Update(UpdateUserDTO userDto);
+        Task<UserDto> Create(UserDto userDto);
+        Task<UserDto> Update(UserDto userDto);
 
         Task Remove(Guid userId);
         Task<UserDto> FindById(Guid userId);
