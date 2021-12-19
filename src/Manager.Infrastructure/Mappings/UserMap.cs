@@ -9,6 +9,9 @@ namespace Manager.Infrastructure.Mappings
         public void Configure(EntityTypeBuilder<User> builder)
         {
             builder
+                .ToTable(nameof(User));
+
+            builder
                 .HasKey(x => x.Id);
 
             builder
