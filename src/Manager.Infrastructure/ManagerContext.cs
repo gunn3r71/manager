@@ -14,7 +14,7 @@ namespace Manager.Infrastructure
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(UserMapping).Assembly);
+            modelBuilder.ApplyConfiguration(new UserMap());
         }
     }
 }
