@@ -34,7 +34,7 @@ namespace Manager.Services.Services
 
         public async Task<UserDto> Update(UserDto userDto)
         {
-            var exists = await Exists(x => x.Id == userDto.UserId);
+            var exists = await Exists(x => x.Id == userDto.Id);
 
             if (!exists) throw new DomainException("User to be updated doesn't exist.");
 

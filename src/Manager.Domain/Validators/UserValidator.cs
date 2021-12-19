@@ -38,9 +38,7 @@ namespace Manager.Domain.Validators
                 .NotNull()
                 .WithMessage("The {PropertyName} cannot be null.")
                 .Length(8)
-                .WithMessage("The {PropertyName} must be {MinLength} characters, you entered {TotalLength}.")
-                .Matches(PasswordRegex)
-                .WithMessage("The {PropertyName} is invalid.");
+                .WithMessage("The {PropertyName} must be {MinLength} characters, you entered {TotalLength}.");
         }
     }
 }

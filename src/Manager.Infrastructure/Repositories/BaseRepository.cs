@@ -30,7 +30,7 @@ namespace Manager.Infrastructure.Repositories
 
         public virtual async Task<T> UpdateAsync(T entity)
         {
-            _context.Entry(entity).State = EntityState.Modified;
+            _entity.Update(entity);
             await Save();
 
             return entity;
@@ -62,7 +62,7 @@ namespace Manager.Infrastructure.Repositories
         }
         public async Task<bool> Exists(Func<T, bool> expression)
         {
-            var result = await _entity.ToListAsync();
+            var result = await _entity.AsNoTracking().ToListAsync();
 
             return result.Any(expression);
         }

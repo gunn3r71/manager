@@ -8,23 +8,20 @@ namespace Manager.Services.DTO
         {
         }
 
-        public UserDto(Guid userId,
+        public UserDto(Guid id,
             string name, 
             string email, 
-            string password,
-            string confirmPassword)
+            string password)
         {
-            UserId = userId;
+            Id = id;
             Name = name;
             Email = email;
             Password = password;
-            ConfirmPassword = confirmPassword;
         }
 
-        public Guid UserId { get; set; }
+        public Guid Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public string ConfirmPassword { get; set; }
     }
 }

@@ -21,20 +21,5 @@ namespace Manager.Infrastructure
         {
             modelBuilder.ApplyConfiguration(new UserMap());
         }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (optionsBuilder.IsConfigured) return;
-
-            var connectionString = @"Server=localhost;Database=Manager;Trusted_Connection=True;";
-
-            optionsBuilder.UseSqlServer(connectionString, x =>
-            {
-                x.EnableRetryOnFailure(3, new TimeSpan(0, 0, 0, 30), null);
-                x.CommandTimeout(30);
-                x.MigrationsHistoryTable("Migrations");
-                x.MigrationsAssembly(typeof(ManagerContext).Assembly.FullName);
-            });
-        }
     }
 }

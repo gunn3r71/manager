@@ -1,9 +1,13 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Manager.API.ViewModels
 {
-    public class CreateUserViewModel
+    public class UpdateUserViewModel
     {
+        [Required(ErrorMessage = "The {0} cannot be empty.")]
+        public Guid Id { get; set; }
+
         [Required(ErrorMessage = "The {0} cannot be empty.")]
         [StringLength(90, ErrorMessage = "The {0} must be between {2} and {1} characters.", MinimumLength = 6)]
         public string Name { get; set; }
@@ -14,7 +18,7 @@ namespace Manager.API.ViewModels
         public string Email { get; set; }
 
         [Required(ErrorMessage = "The {0} cannot be empty.")]
-        [StringLength(8, ErrorMessage="The {PropertyName} must be {2} characters.", MinimumLength = 8)]
+        [StringLength(8, ErrorMessage = "The {PropertyName} must be {2} characters.", MinimumLength = 8)]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "The {0} cannot be empty.")]
