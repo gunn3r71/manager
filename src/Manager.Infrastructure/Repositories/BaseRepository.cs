@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using Manager.Domain.Entities;
 using Manager.Infrastructure.Interfaces;
@@ -57,6 +59,12 @@ namespace Manager.Infrastructure.Repositories
             return await _entity
                             .AsNoTracking()
                             .FirstOrDefaultAsync(x => x.Id == id);
+        }
+        public async Task<bool> Exists(Func<T, bool> expression)
+        {
+            var result = await _entity.ToListAsync();
+
+            return result.Any(expression);
         }
 
         protected async Task<int> Save()

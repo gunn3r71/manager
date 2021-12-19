@@ -1,14 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using Manager.Domain.Validators;
+﻿using Manager.Domain.Validators;
 using Manager.Shared.Exceptions;
 
 namespace Manager.Domain.Entities
 {
     public class User : Base
     {
-        protected User()
+        private User()
         {
         }
 
@@ -20,6 +17,8 @@ namespace Manager.Domain.Entities
             Email = email;
             Password = password;
             _errors = new();
+
+            Validate();
         }
 
         public string Name { get; private set; }

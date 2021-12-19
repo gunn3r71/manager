@@ -12,5 +12,6 @@ namespace Manager.Infrastructure.Interfaces
         Task<T> FindByIdAsync(Guid id);
         Task RemoveAsync(Guid id);
         Task<IEnumerable<T>> GetAllAsync();
+        Task<bool> Exists(Func<T, bool> expression);
     }
 }
