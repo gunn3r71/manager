@@ -1,4 +1,9 @@
-﻿namespace Manager.Domain.Entities
+﻿using System;
+using System.Linq;
+using System.Security.Cryptography.X509Certificates;
+using Manager.Domain.Validators;
+
+namespace Manager.Domain.Entities
 {
     public class User : Base
     {
@@ -6,7 +11,7 @@
         {
         }
 
-        public User(string name, 
+        public User(string name,
             string email,
             string password)
         {
@@ -38,9 +43,17 @@
             Validate();
         }
 
+
         public override bool Validate()
         {
-            return false;
+            var validator = new UserValidator();
+            var validation = validator.Validate(this);
+
+            if (validation.IsValid) return true;
+            
+            validation.Errors.ForEach(x => _errors.Add(x.ErrorMessage));
+
+            throw new Exception($"Some fields are invalid, please fix it, {Errors.First()}"); 
         }
     }
 }
