@@ -44,7 +44,7 @@ namespace Manager.API.Controllers
 
         protected static ResultViewModel UnauthorizedErrorMessage() => new()
         {
-            Message = "You don't have the necessary permission to perform this action.",
+            Message = "Unauthorizad",
             Success = false,
             Data = null
         };

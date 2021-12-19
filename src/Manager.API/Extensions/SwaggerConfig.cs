@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Collections.Generic;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
 
 namespace Manager.API.Extensions
 {
@@ -26,6 +28,29 @@ namespace Manager.API.Extensions
                             Url = new("https://github.com/gunn3r71/manager/blob/master/license.txt")
                         }
                     });
+
+                c.AddSecurityDefinition("Bearer", new()
+                {
+                    In = ParameterLocation.Header,
+                    Description = "Please, Use Bearer <Token>",
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        new OpenApiSecurityScheme()
+                        {
+                            Reference = new OpenApiReference()
+                            {
+                                Id = "Bearer",
+                                Type = ReferenceType.SecurityScheme
+                            }
+                        },
+                        new string[] {}
+                    }
+                });
             });
 
             return services;

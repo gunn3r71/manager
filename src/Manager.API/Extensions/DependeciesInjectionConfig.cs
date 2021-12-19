@@ -1,5 +1,6 @@
 ﻿using System;
 using AutoMapper;
+using Manager.API.Security;
 using Manager.Infrastructure;
 using Manager.Infrastructure.Interfaces;
 using Manager.Infrastructure.Repositories;
@@ -26,6 +27,9 @@ namespace Manager.API.Extensions
 
             //repositories
             services.AddScoped<IUserRepository, UserRepository>();
+
+            //Security
+            services.AddScoped<ITokenGenerator, TokenGenerator>();
 
             return services;
         }

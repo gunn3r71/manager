@@ -21,6 +21,8 @@ namespace Manager.API
         {
             services.ResolveDependencies(Configuration);
 
+            services.AddJwtConfiguration(Configuration);
+
             services.AddControllers();
             
             services.AddSwaggerConfiguration();
@@ -40,6 +42,7 @@ namespace Manager.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

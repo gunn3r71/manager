@@ -6,12 +6,14 @@ using Manager.API.ViewModels;
 using Manager.Services.DTO;
 using Manager.Services.Interfaces;
 using Manager.Shared.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manager.API.Controllers
 {
     [Route("api/v1/[controller]")]
+    [Authorize]
     public class UsersController : BaseController
     {
         private readonly IUserService _userService;
@@ -137,6 +139,29 @@ namespace Manager.API.Controllers
         }
 
         [HttpGet("Email/{email:required}")]
+        public async Task<IActionResult> FindUserByEmailAsync(string email)
+        {
+            try
+            {
+                var user = _mapper.Map<IEnumerable<UserViewModel>>(await _userService.FindByEmail(email));
+
+                if (user is null)
+                    return NotFound(NotFoundResponse("User"));
+
+                return Ok(new ResultViewModel()
+                {
+                    Message = "Success",
+                    Success = true,
+                    Data = user
+                });
+            }
+            catch (Exception)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, ApplicationErrorResponse());
+            }
+        }
+
+        [HttpGet("Search/Email/{email:required}")]
         public async Task<IActionResult> SearchUsersByEmailAsync(string email)
         {
             try
@@ -150,7 +175,7 @@ namespace Manager.API.Controllers
         }
 
 
-        [HttpGet("Name/{name:alpha:required}")]
+        [HttpGet("Search/Name/{name:alpha:required}")]
         public async Task<IActionResult> SearchUsersByNameAsync(string name)
         {
             try
