@@ -100,7 +100,17 @@ namespace Manager.API.Controllers
         {
             try
             {
-                return Ok(_mapper.Map<UserViewModel>(await _userService.FindById(userId)));
+                var user = _mapper.Map<UserViewModel>(await _userService.FindById(userId));
+
+                if (user is null)
+                    return NotFound(NotFoundResponse("User"));
+                
+                return Ok(new ResultViewModel()
+                {
+                    Message = "Success",
+                    Success = true,
+                    Data = user
+                });
             }
             catch (Exception)
             {
@@ -113,7 +123,12 @@ namespace Manager.API.Controllers
         {
             try
             {
-                return Ok(_mapper.Map<IEnumerable<UserViewModel>>(await _userService.GetAll()));
+                return Ok(new ResultViewModel()
+                {
+                    Message = "Success",
+                    Success = true,
+                    Data = _mapper.Map<IEnumerable<UserViewModel>>(await _userService.GetAll())
+                });
             }
             catch (Exception)
             {

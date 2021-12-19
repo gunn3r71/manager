@@ -7,6 +7,20 @@ namespace Manager.API.Controllers
     [ApiController]
     public abstract class BaseController : ControllerBase
     {
+        protected static ResultViewModel NotFoundResponse() => new()
+        {
+            Message = "The Resource was not found.",
+            Success = false,
+            Data = null
+        };
+
+        protected static ResultViewModel NotFoundResponse(string resourceName) => new()
+        {
+            Message = $"The {resourceName} was not found.",
+            Success = false,
+            Data = null
+        };
+
         protected static ResultViewModel ApplicationErrorResponse() => new()
         {
             Message = "Something went wrong trying to process your request, please, try again.",
