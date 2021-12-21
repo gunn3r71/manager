@@ -6,14 +6,12 @@ using Manager.API.ViewModels;
 using Manager.Services.DTO;
 using Manager.Services.Interfaces;
 using Manager.Shared.Exceptions;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Manager.API.Controllers
 {
     [Route("api/v1/[controller]")]
-    [Authorize]
     public class UsersController : BaseController
     {
         private readonly IUserService _userService;

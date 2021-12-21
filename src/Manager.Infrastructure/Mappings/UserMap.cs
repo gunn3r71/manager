@@ -32,7 +32,7 @@ namespace Manager.Infrastructure.Mappings
 
             builder
                 .Property(x => x.Password)
-                .HasColumnType("VARCHAR(8)")
+                .HasColumnType("VARCHAR(24)")
                 .HasMaxLength(8)
                 .IsRequired();
         }

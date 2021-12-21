@@ -37,7 +37,7 @@ namespace Manager.Domain.Validators
                 .WithMessage("The {PropertyName} cannot be empty.")
                 .NotNull()
                 .WithMessage("The {PropertyName} cannot be null.")
-                .Length(8)
+                .Length(8,24)
                 .WithMessage("The {PropertyName} must be {MinLength} characters, you entered {TotalLength}.");
         }
     }
